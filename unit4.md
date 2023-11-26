@@ -61,3 +61,24 @@
 
 ![NoSQL](NoSQL.png "NoSQL")
 
+### CAP Theorem
+- Can be used to explain some of the competing requirements in a distributed system
+- Consistency, Availability, Partition Tolerance
+- Theorem states that __"It is not possible to guarantee all three of the desirable properties at the same time in a distributed system without repliaction"__
+- In SQL based, Consistency is through ACID properties is important
+- In NoSQL based, a weaker consistency level is still acceptable
+
+## MongoDB
+- It is a document database
+- Designed as a scalable database
+- No schema
+- Relational table row without schema
+- Stores data as documents
+- Consists of field-value pairs
+- Documents are stored in BSON format
+- _id is automatically created for every object
+- Timestamp (4 bytes), Node ID (3 bytes), Process ID (2 bytes), Counter (3 bytes)
+
+
+
+
