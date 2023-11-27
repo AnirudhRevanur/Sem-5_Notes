@@ -83,5 +83,7 @@
 - In M-Step, the likelihood function is maximized under the assumption that missing data is known
 - Estimate of the missing data from the E-Step are used instead of the missing data
 
-
+## K-Means CLustering
+- Minimize intra-cluster distance
+- Maximize inter-cluster distance
 

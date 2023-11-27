@@ -163,3 +163,93 @@
 - It will have low bias and high variance
 - This is where ___Learning Rate___ comes into play
 - Learning rate is a value between 0 and 1
+
+
+## GMM
+- Initialize parameters
+- E-Step: Calculate the posterior distribution of latent variables
+- M-Step: Update the Parameters
+- Repeat E and M until convergence
+- Converges to some local optimum
+
+- Applications:
+  - Estimating parameters od a GMM
+  - Baum Welch Algo in HMM
+  - Clustering
+
+- Why GMMs?
+  - By modifying the mean and variance, it can be made to look like an ellipse
+  - Using GMM, we can build clusters in any elliptical shape
+  - GMM is a soft clustering algorithm, it's more flexible than K-Means
+  - Power of the Gaussian distribution, thanks to Central Limit Theorem
+
+![Univariate](Univariate.png "Univariate")
+
+- Select one among K Gaussians according to prior distribution
+- Generate a random data instance from the selected Gaussian
+
+
+## HMM
+- A random sample can be thought of as a set of objects that are chosen randomly
+- ___Random Sample:___ "A Sequence of Independent, Identical Distributed Random Variables"
+- ___Identical Distributed___ means that there are no overall trends
+- ___Independent___ means that the sample items are all independent events, they are not connected to each other in any way
+- The IID assumption that we make during Naive Bayes is an ___assumption___. It does not hold good in many cases
+
+- Modelling is done with the help of Finite State Machines
+- State Machines usually have a start, end state, alphabet that takes you to a new state
+- Alphabets can be thought of the change in conditions that cause a state transition
+- In Modelling Markov Process, there is ___NO SPECIFIC___ start state
+
+### Discrete Markov Process (Markov Chain)
+- Start state is not defined
+- Stochastic process over a discrete state space
+- Proabability on moving from one state to the next depends only on the present state and nothing else
+- Irreducible if we can reach any state from any other state
+
+- A Markov chain is specified by the following components:
+  - A set of states
+  - A transition probability matrix
+  - A special start and end state which are not related to the observations
+
+### Hidden State
+- The underlying hidden variable that represents the state of the system at any point
+- We assumed that the instancecs that constitute a sample are IID
+- But this is not the case usually
+
+- HMM models a process with a First Order Markov process
+- It includes the state distribution
+- Transition probabilities
+- Contains the likelihood B of the observation given a hidden state
+- Matrix B is called emission probabilities
+
+- HMMs are augmentation of Markov Chains
+- Markov Chain is simplest Markov Model
+- HMMs are sequence classifiers
+
+- Two major assumptions are made in HMM:
+  - The next state and current observation solely depend on the current state only
+
+- 3 Fundamental problems:
+  - Likelihood
+  - Decoding
+  - Learning
+
+### Forward Algorithm
+
+- Objective:
+  - Calculae probability of observing a speicific sequence
+
+- Initialization:
+  - We calculate the initial probabilities for each hidden state.
+  - These initial probabilites are determined by the product of initial state distribution and the emission probability
+
+- Recursion:
+  - We iteratively calculate the probabilites of being in each state at that time
+  - Recursion step effectively propogates the probabilites through time
+
+- Termination:
+  - Probability of observing the entire sequence is obtained by summing the forward probabilites for all possible states at the final time step
+  - Final probability represents the likelihood of observing the given sequence according to the HMM
+  
+
