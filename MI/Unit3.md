@@ -69,7 +69,7 @@
 - Manipulate class labels
   - Example: Error-Correcting output coding
 
-### Bagging
+## Bagging
 
 - We can make different learners to have independent errors by splitting the data into subsets and passing them to different learners
 - As we are splitting the data, dataset might be small and we may end up with high variance and overfitting
@@ -86,10 +86,63 @@
 #### Error Calculation
 
 - Can do K-fold cross validation for error calculation
+- Usually 1/3 of the samples are left out in every subset
+- These 1/3 samples are called "Out of the Bag Samples"
+- Measure the error on the unused samples
+- Average that error
+- Average of the error gives us the error for that sample
+- Accumulate the overall error of the "Out of Bag Samples" and find average
+- This error calculation is close to the leave out one approach
 
 
+- ___About 100 learners are enough___
 
 
+## Boosting
+
+- Let different learners ahve different weights
+- These weights can be stated by accuracy or variance
+- Let each learner progressively learn from the previous learner
+- Learner 2 can make mistakes, but it is told to learn from Learner 1's mistakes and not repeat them again
+- Make sure that all the weights add up to 1
+
+|Boosting|Bagging|
+|:------:|:-----:|
+|1. Observations are weighted and therefore some will take part in the new set more often|Any element has the same probability to appear in a new data set|
+
+- One of the most popular boosting technique is ___Adaboost___
+- Use a weak learner called a decision stump
+- One node and based the values it does a binary split
+- Boosting this way so the model _learns slowly and incrementally_
+
+- There is a chance to overfit
+
+
+## Adaboost
+
+- There is only 1 data set being used
+- Initialize to the same normal weight, ie. 1/N, where N = Number of Instances
+- Choose learner with highest accuracy
+- Run the algorithm and collect the error rate = % of misclassified examples
+- Ensure that the next learner does not misclassify the points that the first learner made a mistake on
+- Continue until satisfied
+- Finally take a vote of all the hypothesis (weighted) and state the hypothesis
+- There are 2 weights: ___Instance Weight and Hypothesis Weight___
+
+![Identity Function](Identity.png "Identity Function")
+
+- Sum of weight * loss column stores the total error
+- Compute the stump weight
+
+- The main selling point of Adaboost is that the next learner learns frmo the mistakes of the previous
+- We do this by increasing the weights of the instances that got it wrong and reduce the weights of the instances that got it right
+
+- When the error rate is 0, alpha is close to infinity
+- If the error rate is 0.5, the alpha value is zero, because it's as good as a coin toss
+- If error rate is 1, then everything has been classified incorrectly and the alpha value is -infinity
+
+
+## Maximum Likelihood 
 
 
 
