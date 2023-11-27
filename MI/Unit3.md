@@ -142,7 +142,24 @@
 - If error rate is 1, then everything has been classified incorrectly and the alpha value is -infinity
 
 
-## Maximum Likelihood 
+## Gradient Boost
 
-
-
+- It is an ensemble Algorithm
+- Single constituent models may suffer from high variance and high noise
+- Combining their results would result in a value that is generally more accurate than individual values
+- Gradient Boost starts by making a single leaf, not a tree or stump
+- The first guess is always the average value
+- Gradient Boost builds a tree using the errors of the previous tree
+- Each tree is more than a stump
+- How to predict weight:
+  - Step 1: Calculate average of all weights
+  - Step 2: Calculate the errors from the previous stump by calculating difference
+  - Step 3: Replacee the values at the leaves with their averages in case of multiple values
+  - Step 4: Combine the original tree with the new tree to get a new predicted weight for the same data
+  - Step 5: Calculate the residuals once again using the predicted values from the previous steps
+  - Step 6: Build a new tree
+  - Step 7: Add new tree to the previous trees along with the scaling factor
+  - Step 8: Calculate new residual values
+- It will have low bias and high variance
+- This is where ___Learning Rate___ comes into play
+- Learning rate is a value between 0 and 1
