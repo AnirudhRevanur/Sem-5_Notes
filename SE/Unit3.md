@@ -450,6 +450,182 @@
   - Reporting
 
 
+## SCM Tools
+- Source Code Administration
+- Software Build
+- Software Installation
+- Software Bug Tracking
+
+### Source Code Admin Toold
+- RCS
+  - Very old, but still in use
+- CVS
+  - Current Version Control
+- ClearCase
+  - Multiple servers, process modeling, policy check mechanisma
+- GitHub
+  - Development platform for version control and project management
+
+### Software Build
+- Prcoess of converting source code into standalone software aretfecats
+- Compilation prcess where build it converted to executable
+
+- Make
+  - Automatically build exe using Makefiles
+  - Derive target platform
+- CruiseControl
+  - Open source tool for continuous software builds
+- FinalBuilder
+  - Automate build and release management tool
+  - Easily define and maintain reliable build pricess
+- Maven
+  - Software project management and comprehension tool
+  - Based on project object model
+
+
+
+### Software Installation Tools
+- Cross pplatfomr tools that produce installers from multiple Operating Systems
+- Bootstrapper: Small installer that does the pre-requisites and updates the big bundle
+
+- DeployMaster (Windows)
+  - Distribute windows software via internet, CD or DVD
+  - Works with diff Windows versions
+- InstallShield
+  - Simplifies creation of windows installers
+  - Defacto for MSi installations
+- InstallAware (Windows)
+  - Supports internet deployment
+- Wise Installer
+  - Configure and install MS Windows Apps
+
+
+### Software Bug or Defect Tracking Tools
+
+![Bug Tracking](Bug.png "Bug")
+
+
+## Software Quality
+
+- Perspectives of Quality
+  - Transcedent
+    - Exceed normal expectations
+  - User Based
+    - Fitness for use
+  - Manufacturing
+    - Conformance to specs
+  - Product-Based
+    - Based on attributes of software
+  - Value Based
+    - Balancing time, cost and profits
+
+### Product Operation Perspective
+- Correctness: Does it do what I want it to do?
+- Reliability: Is it accurate?
+- Efficiency: Can it run as well as it can?
+- Integrity: Is it secure?
+- Usability: Can I use it?
+- Functionality: Does it have the necessary features?
+- Availability: Will the product always run when needed?
+
+### Overall Environemnt Perspective
+- Responsiveness: Can it quickly respond to change?
+- Predictability: Can I always predict progress?
+- Productivity: Will things be done efficiently?
+- People: Will the customers be satisfied?
+
+### Product Revision
+- Maintainability: Can I fix it?
+- Testability: Can I test it?
+- Flexibility: Can I change it?
+
+### Product Transition Perspective
+- Portability: Can it run on another machine?
+- Reusability: Can I reuse some/all of the software?
+- Interoperability: Can I interface it with another system?
+
+### Quality
+- Need the ___FLURPS___
+- Functionality: Features of the system
+- Localization: Localizable to all labguages
+- Usability: Intuitive, documentation
+- Reliability: Frequencey of failure in intended time
+- Performance: Speed, throughput, resource consumption
+- Supportability: Serviceability, maintainability
+
+### Cost of Software
+
+|Cost of Good Quality|Bad Quality|
+|:--:|:--:|
+|Prevention Costs|Internal & External Failure costs|
+|Appraisal costs|Technical Debt|
+|Management Control Costs|Management Failures|
+
+## Software Metrics Categorization
+
+- Direct Measures
+  - Depends only on one value
+  - Cost, Effort, etc.
+- Indirect Measures
+  - Derived from direct
+  - Defect density, productivity
+- Size Oriented
+  - Errors/KLoc
+- Complexity
+  - Fan-in, Fan-out
+  - Program Length, Volume, Vocabulary
+- Product Metrics
+  - Assess the state of project
+  - Track potential rishs
+  - Adjust workflow
+- Project Metrics
+  - Number of Software Developers
+  - Staffing Pattern
+  - Cost, Schedule
+- Process Metrics
+  - Insights of software engineering tasks, work product or milestone
+  - Long term process improvements
+
+
+### Software Quality Assurance
+- Methods to monitor SWE process to ensure quality
+
+- Project Managers
+  - Establish processes and procedures
+  - Plan provide oversight
+- Software Engineers
+  - Apply technical methods
+  - Review and Testing
+- SQA Group
+  - QS planning oversight
+  - Customers in-house representative
+- All stakeholders
+  - Perform action releveant to quality of product
+
+
+### CMM
+- Capability Maturity Model
+- Process
+  - Activities, methods to develop and maintain software
+- Process Capability
+  - Abillity of process meet specifications
+  - Indicates range of expected results
+- Process Performance
+  - Measure of results
+- Process Maturity
+  - Extent to which process is defined, managed, measured
+
+![CMM](CMM.png "CMM")
+
+|Benefits|Risks|Limitations|
+|:--:|:--:|:--:|
+|Establishes a common language|Models are a simplification of the real world|No specific way to achieve the goals
+|Build on set of processes and practices|Not comprehensive|Helps if used early in the development phase|
+|Framework for prioritizing actions|Judgement and insight to use the correct model|Only concerned with improvement with improvement of management related activities|
+
+
+
+
 
 
 
