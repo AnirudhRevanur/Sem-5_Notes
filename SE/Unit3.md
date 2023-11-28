@@ -318,6 +318,138 @@
   - Changes must be authorized
 
 
+## SCM Activities
+
+### Branch Management
+
+- ___Codeline:___ Progression of source file and artifact which make up software components as they change over time
+- ___Branch:___ Copy or clone of all or a portion of the source code
+
+- Reasons for branching:
+  - Support concurrent development
+  - Capturing of solution configurations
+  - Support multiple version of a solution
+  - Enable experimentation in isolation without imapcting the stable verison
+
+- Branching ensures overall product is stable
+- Merging is bringing back and integrating changes over multiple branches
+  - Frequent merging can lead to less complex merge conflicts
+- Many branching strategies
+  - Single Branch
+  - Branch by customer or organization
+  - Branch by dev or workspace
+  - Branch by module or component
+- Branch Management means having a well defined branching policy
+
+### Version Management
+- Keeping track of different versions of software components and systems
+- Usage of tools like git for version management
+- Changes are identified by a version number (x.y.z)
+  - x - Release number defined by customer
+  - y - Version number defined by dev
+  - z - Reversion number defined by dev
+
+- Key featurs:
+  - Changes are attributable or traceable
+  - Change history is recorded and can be reverted
+  - Better conflict resolution
+  - Easier code maintainance and quality monitoring
+  - Less software regression
+  - Better organization and communcation
+
+### Build Management
+- Creating the application program for a software release by compiling and linking source code and libraries to build artefacts such as binaries or executables
+- Done with tools like Make, Apache Ant etc
+- Compilation and linking of files in the right order
+  - No need to recompile if no change in source code results in shorter build time
+
+- Build Process
+  - Fetching code from source control repo
+  - Compiling code
+  - Linking libraries
+  - Running tests
+  - Archive logs
+  - May result in version number change
+
+### Install Management
+- Software installation is first interaction with customer
+  - Should not fail as it may result in negative perception
+- Installation: Placing multiple files having executables, downloading or copying from a repo, image, library, config files from internet
+- Intercation with OS functions for validating the resources needed, permissions, versions, identifiers to ensure the enforcement of licenses
+- May involve customizations
+- May be automated using shell scripts, Install Aware and Jenkins
+
+### Promotion Management
+- Promotion is based on certain promotion policies
+- Could be based on baselining criteria which was planned and would invoke some verification
+- Further be authorized and moved to master directory
+
+### Change Management
+- Change could result in creation of different version or release of the software
+- Deals with changes in Config Items which have been baselined
+- General change process
+  - Change can be requested
+  - Unique identification is associated with the requested change and is logged
+  - Change is assess based on imapct to other modules
+  - Decision on the change - Accepted or Rejected
+  - All these are tool driven
+  - If accepted, change is implemented and validated
+  - Plans done and executed for documnetation, versioning, mergining and delivery
+  - Implemented change is audited
+
+- Complexity of change management varies with the project
+  - Small projects perform change requests informally and fast
+  - Complex projects require detailed change request and managers approve it
+- Info required to process a change to a baseline
+  - Description of proposed cahnge
+  - Reasons for making the changes
+  - List of other items affected by the changes
+- Tools, resources and training are required to perform baseline change assessment
+  - File comparision tools to identify changes
+  - Other resources and training depending on size and complexity of project
+
+### Controlling Changes
+- Changes are controlled at two points
+  - Promotion
+  - Release
+
+- Change policies: The promotion and release policy is dictated via environment
+  - Informal: Good for research type
+  - Formal: Good for externally developed config items and for releases
+- Change policies guarantee that each version, revision or release conforms to commonly accepted criteria and a consistent process is applied to how things are done
+  - Enforced through engineering process and  toold
+  - Audited to ensure conformation
+
+
+### Release Managemenet
+- Movement of code to customer and the software repo is done via release policies
+- Release policy: Gating quality criteria that is planned for and includes verification with metrics
+  - On meetings, it would be authorized for a release
+- Release Management: Managing, planning, scheduling and controlling a software build through different stages and environments, testing and deploying software releases
+
+|Release|Version|Revision|
+|:--:|:--:|:--:|
+|Formal distribution of an approved version|Initial release or re-release of a config item associated with a recompilation|Change to a version that corrects only errors in code, but does not affect functionality|
+
+### Bug Management
+- ___Bug:___ Consequence of coding fault
+- ___Defect:___ Variation or deviation from the business requirements
+
+- Process:
+  - Discover
+  - Report
+  - Validate
+  - Analysis
+  - Request for Fix
+  - Resolution
+  - Verification by submitter
+  - Merge code
+  - Update version number
+  - Plan to release fixed to customer
+  - Closure
+  - Reporting
+
+
 
 
 
