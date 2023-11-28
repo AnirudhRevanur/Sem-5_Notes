@@ -253,3 +253,176 @@
   - Final probability represents the likelihood of observing the given sequence according to the HMM
   
 
+
+## Unsupervised Learning
+- Don't have a target variable to predicts
+- Only have independent variables
+- Divide entire data into a set of groups
+- Groups are called clusters, and the process is called clustering
+- Intra cluster distance is minimized, inter-cluster distances are maximized
+
+### Clustering
+- Hierarchical
+- Partitional
+- Density based
+- Grid Based
+
+#### Hierarchical
+- We move based on some hierarchy and combine the data points
+- If you don't terminate, then you will get one item in each cluster, or all items in one cluster, depending on what algo you've chosen for clustering
+- Agglomerative is when you combine points together
+- Divisive is when you break apart the groups into smaller data points
+
+##### Divisive
+- Top-down strategy where we treat all the points as one large cluster.
+- Using a termination criteria we partition the data into smaller groups
+- Criteria is determined by factors like minimum sum of squared errors, after which no further division of data points occurs
+- This algorithm is not flexible and once an operation is performed, it cannot be undone
+
+##### Agglomerative
+- Algorithm:
+  1. COmpute proximity matrix
+  2. Let each data point be a cluster
+  3. Repeat
+    4. Merge two closest clusters
+    5. Update proximity matrix
+  6. Until only one cluster remains
+
+- Key operation is the computation of the proximity of two clusters
+- Inter cluster similarity can be calculated by the following methods:
+  - Min
+  - Max
+  - Group Average
+  - Distance between centroids
+  - Ward's Method(Squared error)
+- Once a decision is made to combine two clusters, it cannot be undone
+- Have problems with one or more:
+  - Sensitivity to noise and outliers
+  - Difficulty handling different sized clusters and convex shapes
+  - Breaking large clusters
+
+#### Difference between Hierarchical and Non-Hierarchical
+
+|Hierarchical|Non-Hierarchical|
+|:----------:|:--------------:|
+|1. Involves creating clusters in a predefined order from top to bottom|Formation ofnew clusters by merging or splitting instead of a hierarchical order|
+|2. Less reliable and slower|Faster and more reliable|
+|3. Problematic to apply this technique when we have high error in data|Can work even when there is an error|
+|4. Easier to read and understand|Difficult to read and understand|
+
+
+#### K-Means Clustering
+- Randomly assign k-centroids
+- Find the distance from all points to all centroids
+- Cluster the points that have the lowest distance to centroid
+- Recompute the centroids
+- Find distance between all points and new centroids, then make changes respectively
+- Outliers badly imapct on K-Means clustering
+- ___Pros:___ Easy to implement
+- ___Cons:___ Can converge at local minima, slow on large data sets
+- If n = number of points, K = number of clusters, I = number of iterations, d = number of attributes, then the complexity is of the order O(n* K * I * D)
+- Eliminiate outliers before applying k means
+- Use hierarchical clustering to determine initial centroids
+
+#### Bisecting K-Means Clustering
+- Set K to define the number of clusters
+- Set all data as a single cluster
+- Use k-means with k=2 to split the cluster
+- Measure distance for each intra cluster
+- Select the cluster with largest distance and split that into 2 clusters again
+
+#### K-Means as Expectation Maximization
+- E-step is assigning the data points to the closest cluster
+- M-step is computing the centroid of each cluster
+
+
+## Genetic Algorithms
+- Metaheuristic search-based optimization technique
+- Optimal or near-optimal solution
+- Avoids local optima, because it looks at global perspective of the solution space
+- Fitness function: Solution as input and produces the suitability of solution as output
+- Genetic operators: Alter genetic composition of offspring. Crossover, mutation etc
+- A pool of possible solutions is considered
+- Recombination and mutation to produce new offsprings
+- Process is repeated over various generations
+- Solutions "evolve" until a stopping criteria is met
+- GAs deal with encoded representation of the solutions and not the solutions directly
+- Prefer to use binary, if can't use binary then go for Real valued notation, and if it discrete values that _can't_ be in binary, use integers
+- GAs are not suited for all problems, especially problems which are simplee nad for which derivative information is available
+- Fitness value computation is expensive
+- No guarantees on the optimality or quality of solution
+- Convergence may not happen in some cases
+
+- ___Steady State:___
+  - Generate one or two offsprings in each iteration and they replace one or two individuals from the population
+
+- ___Generational:___
+  - Generate 'n' offsprings where n is the population size and the entire population is replaced by the new population
+
+- Fitness function defines the criteria for ranking potential hypotheses and for probabilistically selecting them for inclusion in the next gen population
+- Fitness function should have the characteristics:
+  - Fast enough to compute
+  - Measure how fit a given solution is or how fit individuals can be produced from the given solution
+
+- Roulette wheel to select parents:
+  - Spin the wheel, the region that comes in front of the fixed point is one parent, do the same for the second parent
+
+- Stochastic Universal Sampling:
+  - Same as roulette, but have multiple fixed points
+
+- Tournament Selection:
+  - Selet K individulas from the population
+  - Choose the best parent of them all
+
+- Rank Selection:
+  - Individuals have very close fitness values
+  - Selection of the parent depends on rank, not on the fitness
+  - Higher ranked values are preferred more than lower ranked
+
+- Random Selection:
+  - Randomly select parents from existing population
+
+- There are three types of Crossovers:
+  1. Convex
+  2. Affine
+  3. Linear
+
+- Convex Crossover:
+  - Average or Intermediate crossover if alpha = beta = 0.5
+
+- Affine Crossover:
+  - alpha = 1.5 and beta = -0.5
+
+- Linear crossover:
+  - When alpha and beta are strictly restricted as alpha + beta <=2 and beta>0, alpha>0
+
+- Mutation:
+  - Alters one or more gene values in a chromosome from its initial state
+  - Prevents population becoming too similar to each other
+  - Avoid local extreme
+  - Development of un-inherited characteristics
+  - Small random tweak in that chromosome to get a new solution
+  - Used to maintain and introduce little diversity, and is applied with a low probability
+  - If prob is very high, then GA reduces to a random search
+  - Mutation is essential for convergence of GA, while crossover is not necessary
+  - After crossover, the strings are subject to mutation
+
+- Crossover Probability:
+  - Measure of likeliness that the selected chromosomes will be undergoing crossover
+- Crossover Rate:
+  - Total number of crossovers that will be performed on the selected chromosomes
+- Mutation Probability:
+  - Measure of likeliness that random elements of the chromosome will be changed with something else
+- Mutation Rate:
+  - No. of chromosomes that will undergo the mutation out of the total population
+
+|Genetic Algo|Genetic Programming|
+|:----------:|:-----------------:|
+|1. Often produces invalid states|Each individual is a computer program|
+|2. Probabilistic search algo|Explores the algorithmic search space and evolve computer program to perform a task|
+|3. Has an output that is a quantity|Application of Genetic Algo|
+
+
+
+
+
