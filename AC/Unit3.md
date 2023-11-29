@@ -114,8 +114,8 @@
 - If `p` is prime and `a` is a positive integer not divisible by `p`, then $`a^(p-1) \equiv 1 \pmod {p} = 1`$
 
 ### Euler's Theorem
-1. $`a^(f(n)) \equiv 1 \pmod {n} = 1`$
-2. $`a^(k * f(n) + 1) \equiv a \pmod {n} = 1`$
+1. $`a^{(f(n))} \equiv 1 \pmod {n} = 1`$
+2. $`a^{(k * f(n) + 1)} \equiv a \pmod {n} = 1`$
 - The second version is used in the RSA Algorithm
 
 ### Primitive Roots
@@ -143,12 +143,12 @@
 
 - ___RSA Encryption:___ Given the public key (n, e) = k<sub>pub</sub> and the plain text `x`, the given encryption function is:
 ```math
-y = e_k_pub (x) \equiv x^e \pmod {n}
+y = e_{k_pub} (x) \equiv x^e \pmod {n}
 ```
 
 - ___RSA Decryption:___ Given the private key d = k<sub>pr</sub> and the cipher text `y`, the decryption function is
 ```math
-x = d_k_pr (y) \equiv y^d \pmod {n}
+x = d_{k_pr} (y) \equiv y^d \pmod {n}
 ```
 
 - In practice, all the numbers x,y,n,d are all very long numbers, usually 1024 bits long
@@ -161,13 +161,79 @@ x = d_k_pr (y) \equiv y^d \pmod {n}
 4. For a given `n`, there should be many private-key/public-key pairs, otherwise an attacker might be able to perform a brute-force attack
 5. Finding the modular multiplicative inverse for `e mod (p-1)*(q-1)` is a computationally hard problem when `p` and `q` are sufficiently large prime numbers
   - If it is easy to factor n into p and q, then they can compute `d` and break the security of RSA. Therefore the security of RSA relies on the difficulty of factoring n into p and q
-    
-  ` 
+6. Both RSA encryption and decryption are based on modular exponentiation
+  - The efficiency and speed of raising these numbers to large powers then taking the modulo can lead to significant overhead
 
+#### Square and Multiply
+- It's kinda hard to sit and solve long mathematical operation
+- Easier to mod right there after multiplying instead of doing the whoooole multiplication, then modding
 
+##### Steps
+- Convert exponent into binary
+- Have a variable `r` that is your "accumulator"
+- r = ((bit value) * (previous r value)) mod n
+- If it is the first r, then r<sub>0</sub> is the base
+ 
+## Diffie Hellman
+- Key exchange protocol also known as exponential key exchange
+- Enables 2 parties communicating over a public channel to establish a mutual secret
+- Enables two communicating parties to use a public key to encrypt and decrypt data using symmetric key cryptography
 
+- Steps:
+  1. Select two numbers `P` and `Q`, where P is a prime number and Q is a primitve root of P
+  2. Let `a` and `b` be private keys for Alice and Bob respectively
+  3. Alice computes shared key as $`A = Q^a \pmod {P}`$ and sends A to Bob
+  4. Bob computes shared key as $`B = Q^b \pmod {P}`$ and sends B to Alice
+  5. Generate shared, private common key as follows
+    - $`K_a = B^a \pmod {P}`$
+    - $`K_b = A^b \pmod {P}`$
+  6. It can be shown that $`K_a == K_b`
 
+- Uses of Diffie-Hellman
+  - Communication can take place through an insecure channel
+  - Public Key Infrastructure (PKI)
+  - Secure Socket Layer (SSL)
+  - Transport Layer Security (TLS)
+  - Secure Shell (SSH)
+  - Internet Protocol Security (IPsec)
 
+- Limitations of Diffie-Hellman
+  - Does not authenticate either party involved
+  - Cannot be used for
+    - Assymetric exchange
+    - Encrypting messages
+    - Digital Signing
+  - Sensitive to Man in the Middle Attacks
+
+## Elgamal Encryption
+- Almost same as Diffie-Hellman
+- Alice uses the Shared Key as a multiplicative mask to encrypt the plain text
+
+```math
+y \equi (x \times K_m) \pmod {P}
+```
+
+- Protocol consists of two phases
+  - DHKE
+  - Followed by Message encryption decryption
+- The key pair for the reciever does not change, it can be used to encrypt many messages
+- The sender however must generate a new public-private key pair for every message that is encrypted
+- Alice's public key is very temporary
+- For the actual encryption, Alice multiplies the plaintext message by the masking key $`K_m`$ in $`Z_p`$*
+- On the reciever side, Bob reverses the encryption by multiplying the cipher text with the inverse mask
+
+- Elgamal protocol has 3 phases
+  1. ___Set-up Phase:___ Executed once by the party that issues the public key and the reciever of the message
+  2. ___Encryption Phase:___ Encrypt the message
+  3. ___Decryption Phase:___ ...Not much to be said here, Reciever decrypts the message
+- No "Trusted Third Party" is needed to choose a prime and primitive element
+
+- Elgamal  encryption protocol kinda rearranges the sequence, so that Alice will have to send only one message instead of two messages
+
+![Elgamal Encryption](Elgamal.png "Elgamal")
+
+- Cipher text consists of two parts, the Ephemeral (Temporary) Key and the Masked Plain text
+- __Note:__ Ciphertext is twice as long as the plain text, thus the message expansion factor is 2
 
 
 
