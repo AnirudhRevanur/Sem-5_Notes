@@ -107,11 +107,11 @@
 - Euler's phi-function, called the Totient function plays a very important role
 1. $`\phi(1) = 0`$
 2. $`\phi(p) = p-1`$ if p is a prime
-3. $`\phi(m x n) = \phi(m) x \phi(n)`$ if m and n are relatively prime
+3. $`\phi(m \cdot n) = \phi(m) \cdot \phi(n)`$ if m and n are relatively prime
 4. $`\phi(p^e) = p^e - p^{(e-1)}`$ if p is a prime
 
 ### Fermat's Little Theorem
-- If `p` is prime and `a` is a positive integer not divisible by `p`, then $`a^(p-1) \equiv 1 \pmod {p} = 1`$
+- If `p` is prime and `a` is a positive integer not divisible by `p`, then $`a^{p-1} \equiv 1 \pmod {p} = 1`$
 
 ### Euler's Theorem
 1. $`a^{(f(n))} \equiv 1 \pmod {n} = 1`$
@@ -122,6 +122,28 @@
 - Primitive Root of a prime number `n` is an integer `r` between [1, n-1] such that the values of $`r^(x(modn))`$ where x is in the range [0, n-2] are different
 - Basically, when the number `a` is raised to a power `i` that is in the range of mod(n), then all the values in the range of mod(n) must appear once
 
+## Discrete Logarithmic Problem
+- The DLP is the problem of determining the integer $`1 \leq x \leq p-1 `$ such that $`\alpha^x \equiv \beta \pmod {p}`$
+- Solve for `x` in the above equation, and you get the value
+
+### Attacks against the DLP
+1. Brute Force Attack
+  - Most naive nad computationally costly way for computing discrete log
+  - Simply compute powers and pray it works
+  - $`n \geq 80`$ is enough to make it take forever to work
+
+2. Square Root Attacks
+  - Baby Step Giant Step Algo
+  - Pollard's Rho Method
+  - Computes x in $`\sqrt{n}`$ steps
+  - These are the best attacks against Elliptical Curves
+  - Should increase to 160 from 80
+
+3. Index Calculus Attacks
+  - More powerful for solving the DLP
+  - Bit lengths must be chosen so that $`2^m \geq 2^1024`$
+
+  
 ## RSA Algorithm
 - It is the most widely used asymmetric cryptographic scheme
 - Majorly used for:
@@ -292,6 +314,143 @@ s = \frac{3 x_p^2 + a}{2 y_p} \pmod {p} if P == Q
   3. The deterministic ___Evaluation Algorithm___ on input I and x, belonging to Domain, output an element y belonging to the Range
 
   - This tuple is a ___family of permutations___ if for each value of _I_ (Output of the function Gen) holds that Domain = Range, and the function `f: D -> D` is a bijection
+
+## Collsion Resistant Hash
+
+- Compresses `n` bit string to create an `m` bit string where `n > m`
+- Problem: The effort to generate lots of collisions scale sub-linearly
+- Types
+  - Merkle Damgard
+    - Message Disgest
+    - Secure Hash Algorithm
+  - Hash based on block
+    - Rabin Scheme
+    - Davis-Meyer
+    - Matyas-Meyer-Oseas
+    - Miyaguchi-Preneel
+
+![Merkle Damgard](Merkle-Damgard.png "Merkle Damgard")
+
+### Block Cipher Hashes
+- Uses symmetric key block cipher as a compression function
+
+- ___Rabin Scheme:___
+  - Simple based on Merkle-Damgard scheme
+  - Compression function is replaced by encryption
+  - Message block is used as key, previous digest is used as key
+  - Ciphertext is new message digest
+  - Meet in the Middle Attack
+
+- ___Davis-Meyer Scheme:___
+  - Same as Rabin
+  - Uses forward feed to protect against Meet in the Middle Attack
+
+- ___Matyas-Meyer-Oseas Scheme:___
+  - Dual version of Davis-Meyer
+  - Message block is used as key
+  - Scheme can be used if data block and cipher are of the same size
+
+- ___Miyaguchi-Preneel Scheme:___
+  - Extended version of Matyas-Meyer-Oseas
+  - To make algo strong against attack, the Plain text, Cipher Key and Citpher Texr are XORed to create a new digest
+  - Whirlpool Hash Functions
+
+## SHA
+- It has versions from SHA-0 to SHA-3
+
+### SHA 1
+- __Digest size:__ 160 bits
+- __Block size:__ 512 bits
+- __Rounds:__ 80
+- __Structure:__ Merkle-Damgard
+
+- Works on any input message that is less than $`2^64`$ bits
+- Output is always 160 bits
+- Computationally infeasible to
+  - Obtain the original message given the digest (Preimage Resistance)
+  - Find two messages producing the same message digest (Collision Resistance)
+
+![SHA-1](SHA1-HLD.png "SHA-1")
+
+1. Padding of bits
+2. Append length
+3. Divide into 512-bit blocks
+4. Initialize chaining variables
+5. Process Blocks
+
+#### Padding of bits
+- Message is padded so that $`length \equiv 448 \pmod {512}`
+- Length of the padded message is 64 bits less than integral multiple of 512
+- Padding consists of a single `1` bit followed by necessary amount of `0`'s
+
+#### Append Length
+- After processing the message, 64-bit code is added at the end
+- This 64 bits is the length of the message
+- If messages is longer than 64 bits, only look at last 64 bits
+- At this stage we have a message that has a length that is an integral multiple of 512 bits
+
+#### Divide
+- Prior to the compression function, we need to divide message into 512-bit blocks
+- Each 512-bit block can be divided into 16 words or 32-bits each
+
+#### Initialize Buffer
+- A 160-bit buffer is used to hold the hash value for the first iteration
+- Five 32-bit words are fixed and given in hexa notation
+
+#### Process Blocks
+- Each message is processed in 4 stages with 20 rounds
+- Algorithm uses a message schedule which computes 32-bit word for each of the 8- rounds
+- Words are derived from the 512-bit message
+
+```math
+W_j = (W_{j-16} \oplus W_{j-14} \oplus W_{j-8} \oplus W_{j-3}) \ll 1
+```
+
+- This rule is for when the value of j (Round number) is between 16 and 79
+- For the first sixteen rounds, ie 0 to 15, te same bit, raised to the power `j` is carried as the word
+- Five working registers of  size 32 bits => A, B, C, D, E
+- A hash value H<sub>i</sub> consisting of five 32-bit words
+- The hash value holds the initial value which is replaced by a new hash value after the processing of each single message block
+- The final value of H<sub>n</sub> is equal to the output of SHA-1
+
+![SHA1-Round](SHA1-Round.png "SHA-1 Round Function")
+
+- Internal functions and constants change depending on the stage. Every 20 rounds a new function and constant are being used
+
+## MD5 Algorithm
+- Algorithm takes an input of any length and outputs a 128-bit message digest
+- The input is processed in 512-bit blockes
+- ___Collision:___ MD5 can face collision vulnerabilities
+- ___Preimage:___ MD5 is vulnerable to preimage attacks, where it is possible to find the message where the hash originated from
+- ___Speed:___ Speed can be a disadvantage as it makes it easier for brute force attacks and dictionary attacks
+
+1. Append the padding bits
+  - Message is padded so that $`length \equiv 448 \pmod {512}`$
+  - ___Padding is always added even though it is already at desired length___
+  - Padding is a single `1` followed by the necessary number of 0's
+
+2. Append length
+  - 64 bit representation of the length in bits of the original message is appended to the end of step 1
+  - Outcome yields a message that is an integral multiple of 512
+
+3. Initialize the MD buffer
+  - 128 bit buffer is used to hold intermediate and final results of the hash function
+  - Held in 4 registers
+  - Stored in Little-Endian format
+
+4. Process message in 512-bit
+  - The heart of the algorithm is compression algo that consists of four "rounds" of processing
+  - The four rounds have similar structure, but each use a primitive logical function
+  - MD5 consists of 64 operations per block, grouped in four rounds of 16 operations each
+
+5. Output
+  - After all the 512-bit blocks have been processed, the output from the last stage is the 128-bit message digest
+
+
+
+
+
+
 
 
 
