@@ -108,7 +108,7 @@
 1. $`\phi(1) = 0`$
 2. $`\phi(p) = p-1`$ if p is a prime
 3. $`\phi(m x n) = \phi(m) x \phi(n)`$ if m and n are relatively prime
-4. $`\phi(p^e) = p^e - p^(e-1)`$ if p is a prime
+4. $`\phi(p^e) = p^e - p^{(e-1)}`$ if p is a prime
 
 ### Fermat's Little Theorem
 - If `p` is prime and `a` is a positive integer not divisible by `p`, then $`a^(p-1) \equiv 1 \pmod {p} = 1`$
@@ -210,7 +210,7 @@ x = d_{k_pr} (y) \equiv y^d \pmod {n}
 - Alice uses the Shared Key as a multiplicative mask to encrypt the plain text
 
 ```math
-y \equi (x \times K_m) \pmod {P}
+y \equiv (x \times K_m) \pmod {P}
 ```
 
 - Protocol consists of two phases
@@ -234,20 +234,51 @@ y \equi (x \times K_m) \pmod {P}
 
 - Cipher text consists of two parts, the Ephemeral (Temporary) Key and the Masked Plain text
 - __Note:__ Ciphertext is twice as long as the plain text, thus the message expansion factor is 2
+- Advantages of Elgamal over Diffie Hellman
+  - Public Key of Bob is fixed and other values are chosen by him
+  - It is a probabilistic encryption scheme
+  - Encrypting two identical messages using the same public key results in different cipher texts
 
 
+### Computational Analysis
+- Square and Multiply Algo can be used for Key Generation to decrease compute time
+- ___Encryption:___ Two modular exponentiations are required and one modular multiplication are required. One should apply square-and-multiply algorithm
+- ___Decryption:___ Can convert both the steps (Exponentiation and Inversion of K) into one step thanks to Fermat's Little Theorem
 
+### Attacks
+- If Oscar _can_ compute DLPs, he will have two ways of attacking
+1. Recover `x` by finding Bob's secret Key
+2. Oscar could attempt to recover Alice's random exponent _i_
+- To guarantee security from these attacks, _P_ should be at least 1024 bits long
 
+## Elliptic Curve Cryptography
+- Polynomial equation of an elliptic curve
+- We are interested in elliptical curve modulo prime `p`
 
+```math
+y^2 \equiv x^3 + a \cdot x + b \pmod {p}
+```
 
+```math
+4 \cdot a^3 + 27 \cdot b^2 \neq 0 \pmod {p}
+```
 
+- Elliptic Curve is symmetric over the __x-axis__
+- Upto two solutions exists for each quadratic equation
+- One in +y direction, the other in the -y direction
+- For each point `P(x,y)`, the inverse/negative point is defined as `-P(x,-y)`
 
+### Elliptic Curve Addition and Doubling
 
+- If the points $`P(x_p,y_p)`$ and $`Q(x_q, y_q)$ are added and give the point $`R(x_r, y_r)`$, then th value of R is
 
+```math
+x_r = (s^2 - x_p - x_q) \pmod {p}
+y_r = s(x_p - x_r) - y_p \pmod {p}
 
-
-
-
+s = \frac{y_q - y_p}{x_q - x_p} \pmod {p} if P \neq Q
+s = \frac{3 x_p^2 + a}{2 y_p} \pmod {p} if P == Q
+```
 
 ## One Way Functions and Permutations
 
