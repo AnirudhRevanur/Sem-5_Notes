@@ -64,7 +64,64 @@
 - Some algos are suitable for all uses, others are specific to one
 
 
+## Modular Arithmetic
+- We are interested only in remainders over here, nothing else
+- If `a` and `b` have the same remainder when divided by `n`, we show it as $`a \equiv b \pmod {n}`$
+- A residue class of `r` denoted by `[r]` is the set of integers congruent modulo n
 
+[r] = {x: x is an integer such that $`x \equiv r \pmod {n}`$ }
+
+- Since there are n-1 possibilites of r, we get n-1 residue classes as modulo `n`
+- We denote the set of all residue classes as Z<sub>n</sub>
+
+- The three binary operators that we discussed for the set `Z` cal also be used for the set Z<sub>n</sub>
+
+### Inverses
+- When we work with modular arithmetic, we often need to find the inverse of a number relative to an operation
+- Normally looking for an additive inverse or a multiplicative inverse
+
+#### Additive inverse
+```math
+(a + b) \equiv 0 \pmod {n}
+```
+- Each integer has an additive inverse
+- Sum of an integer and its additive inverse is 0 in modulo n
+
+#### Multiplicative Inverse
+```math
+(a * b) \equiv 1 \pmod {n}
+```
+- An integer may or may not have a multiplicative inverse
+
+- We need to use Z<sub>n</sub> when additive inverses are needed
+- We need to use Z<sub>n</sub>* when multiplicative inverses are needed
+- Z<sub>n</sub>* is the set where all the elements have a gcd of 1 with {n}
+
+## Prime Numbers
+- Prime numbers have only two divisors
+- Largest known prime number is $`2<sup>82,589,933</sup> - 1`$. It has 24,862,048 digits
+- Why primes?
+  - It is fast to multiply two prime numbers, but it is computationally expensive to do prime factorize the large prime number
+
+### Euler's Phi Function
+- Euler's phi-function, called the Totient function plays a very important role
+1. $`\phi(1) = 0`$
+2. $`\phi(p) = p-1`$ if p is a prime
+3. $`\phi(m x n) = \phi(m) x \phi(n)`$ if m and n are relatively prime
+4. $`\phi(p^e) = p^e - p^(e-1)`$ if p is a prime
+
+### Fermat's Little Theorem
+- If `p` is prime and `a` is a positive integer not divisible by `p`, then $`a^(p-1) \equiv 1 \pmod {p} = 1`$
+
+### Euler's Theorem
+1. $`a^(f(n)) \equiv 1 \pmod {n} = 1`$
+2. $`a^(k * f(n) + 1) \equiv a \pmod {n} = 1`$
+- The second version is used in the RSA Algorithm
+
+### Primitive Roots
+- Primitive Root of a prime number `n` is an integer `r` between [1, n-1] such that the values of $`r^(x(modn))`$ where x is in the range [0, n-2] are different
+- Basically, when the number `a` is raised to a power `i` that is in the range of mod(n), then all the values in the range of mod(n) must appear once
+- 
 
 
 
