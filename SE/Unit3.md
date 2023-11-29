@@ -347,7 +347,7 @@
 - Changes are identified by a version number (x.y.z)
   - x - Release number defined by customer
   - y - Version number defined by dev
-  - z - Reversion number defined by dev
+  - z - Revision number defined by dev
 
 - Key featurs:
   - Changes are attributable or traceable
