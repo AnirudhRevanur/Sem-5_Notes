@@ -121,7 +121,48 @@
 ### Primitive Roots
 - Primitive Root of a prime number `n` is an integer `r` between [1, n-1] such that the values of $`r^(x(modn))`$ where x is in the range [0, n-2] are different
 - Basically, when the number `a` is raised to a power `i` that is in the range of mod(n), then all the values in the range of mod(n) must appear once
-- 
+
+## RSA Algorithm
+- It is the most widely used asymmetric cryptographic scheme
+- Majorly used for:
+  - Encryption of small pieces of data
+  - Key Transport
+  - Digital Signatures
+- ___Note:___ RSA is not meant to replace symmetric ciphers because it is several times slower than ciphers like AES. This is because of the large computation that takes place. So the main use is to securely exchange a key for a symmetric cipher. RSA is used with a cipher like AES, where AES carries the major bulk, and RSA just enables the key exchange
+
+### Key Generation
+- Require the computation of the pair (K<sub>pub</sub>, K<sub>pr</sub>)
+- Steps involved in computin ght public and private key
+  1. Choose two large prime numbers `p` and `q`
+  2. Compute `n = p*q` and `z= (p-1)*(q-1)`
+  3. Choose number `e` such that `e < n` and is coprime with z
+  4. Find the number `d` such that (ed - 1) is exactly divisible by `z`
+  5. Keys generated using n, d and e:
+    - Public Key (n, e)
+    - Private Key (n, d)
+
+- ___RSA Encryption:___ Given the public key (n, e) = k<sub>pub</sub> and the plain text `x`, the given encryption function is:
+```math
+y = e_k_pub (x) \equiv x^e \pmod {n}
+```
+
+- ___RSA Decryption:___ Given the private key d = k<sub>pr</sub> and the cipher text `y`, the decryption function is
+```math
+x = d_k_pr (y) \equiv y^d \pmod {n}
+```
+
+- In practice, all the numbers x,y,n,d are all very long numbers, usually 1024 bits long
+- The value `e` is referred to as __encryption exponent__ and `d` is usually known as __decryption exponent___
+
+### Encryption and Decryption
+1. Since an attacker has access to the public key, it must be computationally infeasible to determine the private-key `d` given the public-key values `e` and `n`
+2. Since `x` is unique only up until the size of the modulus, we cannot encrypt more than 'l' bits, where 'l' is bit length of n
+3. It should be relatively easy to calculate $`x^e mod(n)`$ and $`y^d mod(n)`$. This means that we need a method for fast exponentiation with very large numbers
+4. For a given `n`, there should be many private-key/public-key pairs, otherwise an attacker might be able to perform a brute-force attack
+5. Finding the modular multiplicative inverse for `e mod (p-1)*(q-1)` is a computationally hard problem when `p` and `q` are sufficiently large prime numbers
+  - If it is easy to factor n into p and q, then they can compute `d` and break the security of RSA. Therefore the security of RSA relies on the difficulty of factoring n into p and q
+    
+  ` 
 
 
 
