@@ -160,9 +160,148 @@
 - DNSSEC provides chain of trust using DNS zone hierarchy, so name servers in parten zones vouch for the child zones
 - TLS/SSL relies on Public Key Infrastructure which contains Certificate Authorities vouching for other computers
 
+## Firewalls
+- Firewall is a netowrk security device or a software that monitors incoming and outgoing network traffic and blocks traffic based on the rulesets
+- First line of defence for over 25 years
+- Establish a barrier between secured and controlled internal networks and the untrusted outside world
+- Firewall makes a decision based on the rules in the ruleset
+- __A firewall is only as good as its ruleset__
+
+### Firewall Actions
+- __Allow/Accept:__ Allowed to enter into the connected network/host through the firewall
+- __Deny/Dropped:__ Not permitted to enter into the other side of the firewall
+- __Rejected:__ Similar to deny, but an attempt will be made to tell the source about the decision through a specifically crafted ICMP packet
+- _Ingress Filter:_ Inspects the incoming traffic
+- _Egress Filter:_ Insepcts the traffic leaving the network and prevent people to access the outisde network
+
+### Firewall Location
+- Network zone is an administrative name for a colleciton of systems that require the same access control policy
+- To secure a network, divide the network into managable zones, divided based on types of information contained inside the zone and who needs to acces it
+- Place firewalls between the zones and implement access controls between the zones
+- All firewalls monitor all traffic, either on network or on individual machine
+- Firewalls can be placed anywhere on a network
+  - External boundary firewall is placed at the edge of a local or enterprise network, just inside the boundary router
+  - One or more internal firewalls acn protect the bulk of the organization network
+- ___Host based firewalls:___
+  - Software on a host that provides traffic control for that physical host
+    - Inspect traffic before it is allowed to interact with any other applications on that host
+    - Firewall capabilities are usually part of the OS running on the host
+- ___Network based firewalls:___
+  - Devices placed in-path in the netowrk with the intent of controlling packet flows
+    - Provide protection for usually more than one device
+    - Almost always hardware device with multiple network interfaces
+    - Firewall functionality can be implemented as a software module in a router or LAN switch
+
+### Demilitarized Zone
+- The DMZ functions as a small, isolated network positioned between the Internet and the private network
+- Any service that is being provided to users on the external network can be placed in the DMZ
+  - Web servers
+  - Mail servers
+  - FTP server
+- Neither as secure as the internal network, nor as insecure as the public
+- Hosts in the DMZ are only allowed to have limited connectivity to specific hosts in the internal network
+- Provides three layers of protection:
+  - Has to penetrate the outside, router, bastion host(proxy), and the inside firewall router devices
+- Since the outside router advertises only the DMZ, it appears as though the private network is __invisible__
+- Since the inside routers advertise the DMZ only to the private network, systems do not have outside internet acsess and they have to use the bastion station to reach the external internet
+- As DMZ is on a different network, a NAT can be installed on the bastion host to eliminate the need to renumber of re-subnet the private network
+
+### Bastion Host
+- Dedicated server that lets authorized users access a private network from an external network
+- Bastion host performs authentication and proxy functions
+- Placed outside the firewall or within a DMZ. it becomes the only ingress path to the internal resources
+- Any single-purpose server providing access control could be a bastion host
+- Systems face the internet, and hence need to be on the public side of of a firewall or DMZ
+- They may provide authorized users access to certain internal resources
 
 
+### Firewall Placement
+1. ___Single Firewall:___
+  - Single Firewall with at least 3 network interfaces, one from the public internet, one to DMZ, one to Internal Network
+  - It is a single point of failure, as all the network has to go through there
+2. ___Dual Firewall:___
+  - First firewall is placed between the DMZ and the external network
+  - Second one is placed between the DMZ and the internal network
+  - This setup is more secure as there has to be a breach in both firewalls to reach the internal network
+  -  Internal firewalls provide three purposes:
+    1. Add more strict filtering capability
+    2. Provides two way protection wrt DMZ
+      - Protects the Internal network if the DMZ is compromised
+      - Protects DMZ from attack from the internal network
+    3. Multiple internal firewalls can be used to protect portions of the internal network
+3. ___Distributed Firewall:___
+  - Involves stand-alone firewalls devices plus host-based firewall working together
+  - Admins can configure host-resident firewalls on hundreds of servers and workstations
+    - These protect against internal attacks and provide protection tailored machines
+  - Stand alone firewalls provide global protection, including internal firewalls and an external firewall
+  - One can establish both internal and external DMZ
+    - Web servers that need less protection, have less crit info, could be placed in an external DMZ outside the external firewall
+    - Host based firewalls can be used on these Web Servers
 
+### Design of Firewalls
+- ___Firewall Policy:___
+  - Dictates how firewalls should handle network traffic for specific IP based on the organization's info and security policies
+  - Before making a firewall policy, risk analysis should be performed to find out what kind of traffic is needed by the organization and categorize them into how they should be treated by firewall
+  - Risk Analysis is based on evaluation of threats, vulnerabilities, countermeasures
+  - Firewall policy should be documented in the system security place and maintained and updated as frequently as possible
+- ___Goals of a Firewall:___
+  - Only authorized traffic should be allowed to pass through
+  - All the traffic between the trust zones should pass through
+  - Firewall must be immune to penetration, which implies using a hardened system with secured Operating Systems
+
+### Zero Trust Architecture
+- Eliminate Implicit Trust
+- "Never trust, Always verify"
+- Based on the realization that traditional security models operate on the outdated assumption that everything inside should be implicitly trusted
+- With work being pushed to the cloud, taking a Zero Trust Architecture has become critical
+- __If done correctly, Zero Trust results in higher overall levels of security__
+
+### Sensible Firewall Policy
+- A sensible firewall policy should
+  - Default to blocking traffic
+  - Driven by institutional policy
+  - Directly linked to a natural-language policy
+  - Defined in simple straightforward terms
+  - Reusable objects
+  - Descriptive comments
+- Default deny is preferred default
+  - Impractical in making default allow, because it has to check each condition for deny
+  - Instead, write what you want to allow, and block everything else
+  - Makes auditing the firewall much easier
+
+#### Characteristics used by a Firewall Access Policy
+- IP Address and Protocol Values
+- Application Protocol
+- User Identity
+- Network Activity
+
+#### Firewall Policy
+- ___User Control:___ Controls access to the data based on the role of the user who is attempting to access it. APplied inside the firewall perimeter
+- ___Service Control:___ Controls access by type of service offered by the host. Applied on the basis of netowrk address, protocol or connection
+- ___Direction control:___ Determines the direction in which requests may be initiated and are allowed ot flow through the firewall
+
+
+### Types of Firewalls
+1. Packet Filter/Stateless Filter
+2. Stateful Firewall
+3. Application/Proxy Firewall
+4. Next-gen Firewall
+
+#### Packet Filter
+- Operate at points where routers work
+  - Administrator can define rules to manage allowed ports and IP Addresses
+- Compare each packet to a set of established criteria like:
+  - Allowed IP Address
+  - Packet type
+  - Port number
+  - Other aspects of the packet protocol headers
+- Stateless as it performs per packet
+- Access Control List filter traffic as it passes through a router or switch
+- ACLs consist of the desired action and one or more of:
+  - Source address
+  - Destination address
+  - Protocol
+  - Source/destination port
 
 
 
