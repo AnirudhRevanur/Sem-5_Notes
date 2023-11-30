@@ -164,9 +164,7 @@
     - Private Key (n, d)
 
 - ___RSA Encryption:___ Given the public key (n, e) = k<sub>pub</sub> and the plain text `x`, the given encryption function is:
-```math
-y = e_{k_pub} (x) \equiv x^e \pmod {n}
-```
+$`y = e_{k_pub} (x) \equiv x^e \pmod {n}`$
 
 - ___RSA Decryption:___ Given the private key d = k<sub>pr</sub> and the cipher text `y`, the decryption function is
 ```math
