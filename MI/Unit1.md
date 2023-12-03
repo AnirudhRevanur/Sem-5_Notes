@@ -47,6 +47,188 @@
 3. __Lack of Creativity:__ Machines can only do what they are programmed and cannot be asked to think
 4. __Lack of Emotions:__ They cannot replace the connection that humans have when they are in a team
 
+## Four Views of Intelligence
+
+### Thinking Humanly
+- Understand how humans think and model this process
+- Cognitive Science
+- Creating AI systems that emulate human cognition, reasoning etc.
+- Develop machines that can understand and respond to information in a manner that is similar to humans
+
+### Acting Humanly
+- Turing Test
+- Knowledge, Reasoning, Language, Learning
+- Perform tasks and exhibit behaviour that is indistinguishable from a human
+- Emulate human-like behaviours, reasoning and decision making
+
+### Thinking Rationally
+- Rational - Thinking and doing the right thing
+- Use logic to encode the right thing and process inputs with framework
+- Reason logically and make decisions based on formal rules and principles
+- Using well-defined algorithms and deductive reasoning to arrive at conclusions that are logically valid
+
+### Acting Rationally
+- "Maximize the goal achievement"
+- Rational Agent gives the best outcome
+- Most appropriate course of action based on available information and the expected outcomes rather than strictly following predefined rules, or mimicking human behaviour
+
+
+## Types of AI
+
+### Narrow AI
+- AI systems designed for specific tasks or domains
+- Examples include virtuall assistants, image recognition software and recommendation systems
+
+### General AI
+- Possess human-like intelligence, allowing it to understand, learn and perform any intellectual task that a human can
+- Still a theoretical concept
+
+### Super AI
+- Surpasses human intelligence and capabilities with potential to outperform humans in every aspect
+- Speculative concept and its development raises ethical and existential considerations
+
+## Agent
+- Agent is an independent program that interacts with environment with the help of sensors, then acting to actuators
+- Agent runs in the cycle of perceiving, thinking and acting
+- __Agent = Architecture(Hardware) + Software Systems__
+
+### Intelligent Agents
+- Autonomous entities that act upon an environment using sensors and actuators that achieve their goals
+- May learn from the environment to achieve these goals
+- ___Software:___ Agent has file contents,  keystrokes and received network packages that function sensory input, and display output on a screen
+- ___Human:___ Humans have eyes, ears and other organs that act as sensors, while other organs like hands, legs and other body parts are actuators
+- ___Robotic:___ Robotic Agents have cameras  and infrared range finders that act as sensors, and parts like motors and servos act as actuators
+
+### Rational Agent
+- Agent that has a clear preference and acts in a way to maximize its performance measure with all possible actions
+- Performs the right things
+- Rational action is most important because it receives positive rewards for good behavious and negative rewards for bad behavious
+- Self driving cars, Game Playing AI, Siri/Alexa, Stock trading algorithms, Industrial robots
+
+
+|Intelligent Agent|Rational Agent|
+|:--:|:--:|
+|System that can perceive its environment and take actions to a specific goal|Makes decisions based on logical reasoning and optimizes its behaviour to achieve a goal|
+|Perceive environment through sensors|Based on information available and logical reasoning|
+|Decisions basd on set of rules or pre-defined algorithm|Decisions based on logical reasoning|
+|Learn from environment and changes behavior|Learns from environment, but changes behaviour based on logical reasoning|
+|Operate independently of humans|Operates autonomously, but based on logical reasoning|
+
+### Rules
+1. AI Agent must be able to perceive the environment
+2. Environmental observations must be used to make decisions
+3. Decisions should result in an action
+4. Action taken should be rational
+
+### Structure of an AI Agent
+- Structure of an Intelligent Agent is a combination of architecture and agent program
+- Can be viewed as __Agent = Architecture + Agent Program__
+- __Architecture:__ Machinery that AI agents executes on
+- __Agent function:__ Map a percept to an action
+- __Agent program:__ Implementation of agent function
+
+### Agent Cycle
+- __Perciving:__ Inputs from the environment are received by intelligent agents through sensors
+- __Decision making:__ Uses AI to make decisions
+- __Acting:__ Actions are triggered through actuators
+
+### Characterizing an Intelligent Agent
+- __PEAS__ is used for high-level characterization. It stands for:
+  - __P__ = Performance Measure
+  - __E__ = Environment
+  - __A__ = Actuators
+  - __S__ = Sensors
+- AI Algorithms can be written more effectively by identifying PEAS
+
+### Terminologies
+
+#### Agent Function
+- Is a map from the precept square to an action
+- _Input:_ Entire percept history
+- _Output:_ Provides behaviour of agent
+
+#### Agent Program
+- Implementation of an agent function
+- _Input:_ Current Precept Only
+- _Output:_ Returns Action to the Actuators
+
+#### State
+- Configuration of an agent and its environment
+- Enables the agent to remember past experiences, reason about the current situation and plan for future
+
+#### Initial State
+- Starting Point of agent's interaction with the environment
+- Represents the agent's knowledge, beliefs and information about the environment at the beginning of a task or problem solving process
+
+#### Actions
+- Represents different choices or moves that an agent can make
+- Essential for the agent to adapt and respond appropriately to changes in the environment and work towards its goals effectively
+
+
+## Environments
+
+### Observability
+#### Full Observable
+- If an agent's sensors give it access to the complete state of the environment, the environment is observable
+- State of the system can be determined at all times
+#### Partially Observable
+- Entire state is not fully visible to the sensor
+- Observer may utilize a memory system in order to add information to the observer's understanding of the system
+
+### Determinism
+#### Deterministic
+- If an agent's current state and selected action can completely determine the next state of the environment, then it is deterministic
+#### Stochastic
+- Stochastic environment is random in nature, partially observable and cannot be determined completely by an agent
+
+### Episodicity
+#### Episodic
+- Agent's experience is divided into atomic episodes
+- In each episode, the AI Agent observes and performs one action, and the choice is solely based on that specific episode, independent of the previous actions
+#### Sequential
+- Environment where next state is dependent on the current action
+- Current decision affects all future decision
+
+### Dynamism
+#### Static Environment
+- Idle environment with no change in its state is called static environment
+- Does not change from one state to the next when agent is considering its course of action
+- Agent need not keep looking at the world when it is deciding, nor the passage of time
+#### Dynamic Environment
+- Environment can change while an agent is thinking
+
+### Continuity
+#### Discrete Environment
+- Consists of finite number of actions that can be deliberated in the environment to obtain output
+#### Continuous Environment
+- Actions performed cannot be numbered
+
+## Traditional Modelling vs  Machine Learning
+
+|Traditional Modelling|Machine Learning|
+|:--:|:--:|
+|Take data and rules as input and apply the rules to the data, to come up with answers as output|In machine learning, the computer finds patterns and rules and creates a model. This model is output|
+
+- ___Machine Learning:___  It is the study of algorithms that
+  - Improve their performance "P"
+  - at some task "T"
+  - with experience "E"(Training data)
+
+- __7 steps in Machine Learning:__
+  1. Data Collection
+  2. Data Preparation
+  3. Choosing a model
+  4. Training
+  5. Evaluation
+  6. Parameter Tuning
+  7. Prediction
+
+### Supervised Learning
+
+
+
+
+
 
 
 
