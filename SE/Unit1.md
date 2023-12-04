@@ -333,13 +333,149 @@
 - Build integrity in as processes
 - Consider the whole system
 
+## CBSE
+- Component Based Software Engineering is a reuse approach
+- Select components from the shelf and integrate it into your project
+- __Advantages:__
+  - Black box usage of components
+  - Reduced development time
+  - Increases quality
+  - Increases productivity
+- __Disadvantages:__
+  - Trusting components
+  - Component certification
+  - Emergent property prediction
+  - Requirement trade off
+
+### Essentials of CBSE
+- Independent components that are completely specified by the public interfaces
+- Component standards that facilitate the integration of components
+- Middleware that provides support for component integration
+- Development process that is geared up to CBSE
+
+### Software Component
+- Independent executable entity that can be made up of one or more executable objects
+- It has explicit dependencies through "required" interfaces and "provides" interfaces
+- It implements a functionality without regard to where the component is executing or its programming language
+- ___Identifying the Component:___
+  1. Search for component
+  2. Select Component
+  3. Compose component from existing ones
+  4. Adadpters or "glue" is used to reconcile different component interfaces
+  5. Validate the output
+- ___Development Stages:___
+  1. Development = UML
+  2. Packaging = .zip
+  3. Distribution
+  4. Deployment
+  5. Execution = Blocks of Code and Data
+### Component Model:
+- Defines the type of building blocks that can be composed with other components to make a software system
+- __Interfaces:__ Defines how component can interact and also defines operation names, parameters and exceptions
+- __Usage:__ In order for components to be distributed and accessed remotely, they need to have a globaly unique name or handle associated with them
+- __Deployment:__ Specification of how components should be packaged for deplyment as independent, executable entitites
+
+### Software Product Lines:
+- A product line defines a family of manufactured products
+- Product line architecture explicitly captures the commonality and  variability of a product line components and their compositions
+- Software Product Lines refers to engineering techniques for creating a portfolio of similar software systems from a shared set of software assets
+- Makes it possible to
+  - Create software for different products
+  - Use variability to customize software to each different product
+- ___Key Drivers:___  
+  - Software porduct lines enhance reuse through predictive software reuse
+  - Software artifacts are created when reuse is predicted in one or more products in a well defined product line
+  - Artifacts could be built as components which are reusable or could be looked at as patterns which could be built using some fine grained components for a particular solution
+
+### Product Line Engineering Framework
+- ___Domain Engineering:___ Define and realize the commonality and variability. Goal is to establish a reusable platform
+- ___Application Engineering:___ Reuse domain artifacts
 
 
+## Requirement Engineering
+- Requirement is the property which must be exhibited by the software developed/adapted to solve a particular problem
+- Requirement should specify the externally visible behaviour of what and not how
+- First step in any software intensive development lifecycle irrespective of the SDLC
+  - Difficult, Error Prone and Costly
+  - Critical for successful development of all down stream activities
+  - Requirement Errors are expensive to fix
 
+### Requirement
+- It is a property which must be exhibited by software developed/adapted to solve a particular problem
+- Should specify the externally visible behaviour of __what__
+- Can be:
+  - Individual requirements
+  - Set of requirements
 
-  
+#### Individual Requirements
+- __Concise:__ Requirements should describe a single property
+- __Unambiguous:__ Should have only one interpretation
+- __Verifiable:__ Requirements must have a clear, testable criterion and cost effective process to check it
+- __Quantifiable:__ Requirement should be quantifiable
+- __Traceable:__ Backward sto stakeholder request and forward to software to components
+- __Clear:__ Written Preciselu
+- __Consistent:__ No requirements should contradict each other
+- __Feasible:__ Realizable with a specified time frame
+- __Prioritized:__ Requirements should be prioritized
 
+#### Set of Requirements
+- Realistic
+- Complete
+- Ranked for Importance or Stability
+- Modifiable
+- Correct
 
+### Feasibility Study
+- Short, low-cost study to assess the praticality of the project and whether or not it should be done
+- It is done before the beginning of a project
 
+#### Activities in a Feasibility Study
+- Find the client that will have a stake in this project
+- Find current solution to the problem
+- Targeted customers and the future marketplace
+- Potential Benefits
+- Scope
+- High level understanding of the solution
+- Considerations to technology
+- Marketing Strategy
+- Financial Projection
+- Schedule and high level planning and budget requirements
+- Issues, assumptions, risks and constraints
+- Alternatives and their consideration
+- Potential Project Organization
+- ___Ends with GO or NO-GO___
 
+#### Requirements Engineering Process
+It is a "four+one" set of activities to produce specifications or requirements 
+1. __Requirements Elicitation:__ To gather and discover requirements
+2. __Requirements Analysis:__ Process of reviewing requirements
+3. __Requirements Specifications:__ Process of creating software and system specification documents suitable for further designing and maintainance
+4. __Requirements Validation:__ Helps ensure the right requirements are realized
 
+## Requirement Elicitation
+- Process of working proactively with all stakeholders gathering their needs, articulating their problem, identify and negotiate potential conflicts thereby establishing a clear scope and boundary for a project
+- Involves:
+  - Understanding the problem
+  - Understanding the domain
+  - Identifying clear objectives
+  - Understanding needs
+  - Understanding constraints of systme
+  - Writing business objectives for the project
+
+#### Active Techniques
+- Ongoing interaction between stakeholder and user
+1. Interviews
+2. Facilitated meetings
+3. Roleplaying
+4. Prototypes
+5. Ethnography
+6. Scenarios
+
+#### Passive
+- Infrequent interaction between the stakeholders and users
+1. Use cases
+2. Business process analysis & modelling
+3. Workflows
+4. Questionnaires
+5. Checklists
+6. Documentation
