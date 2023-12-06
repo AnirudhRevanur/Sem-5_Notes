@@ -252,6 +252,283 @@
   - Bottom Up Approach
   - Information Hiding
 
+## Architectural Views
+- Module View Point/Structure of Modules
+- Component and Connector Structure
+- Allocation Structure
+- Krutchen's View/4+1 View
+
+### Module View Point
+- Modules are units of Implementation with some functional responsibility
+- Structure the system as a set of code units
+- Architect enumerates what the units of software will have to do and assign each item to a module
+- Larger modules may be decomposed to sub-modules
+- Used as the basis for development project's organization and deliverables like documentation
+
+### Component and Connector View Point
+- Indicates a way of representing a dynamic view of the system
+
+#### Components or Processing Element
+- Software structure which converts inputs to outputs
+- Series of processes
+- Components are:
+  - Computational
+  - Manager
+  - Controller
+
+#### Data Element
+- Information needed for processing or to be processed
+- Data Elements include: Memory with data
+
+#### Connecting Elements
+- Glue to the components and Data Elements
+- Communication and Synchronization Link
+- Connecting Elements are:
+  - Procedure calls
+  - RPCs
+  - Communication Protocols
+  - Object Persistence
+
+### Allocation View Point
+- ___Deployment Structure:___
+  - Shows how software is assigned to hardware elements and which communication paths are used
+  - This view allows engineer to reason about performance, data integrity, availability and security
+  - Important in distributed or Parallel Systems
+- ___Implementation Structure:___
+  - Indicates how software is mapped onto file structures in system's development, integration, or config control environments
+- ___Work Assignment Structure:___
+  - Shows who is doing what and helps determine what knowledge is needed where
+
+### Krutchen's View Point
+- ___Use Case View:___
+  - Exposing the requirements of the system or scenarios
+- ___Design View:___
+  - Exposes vocabulary of the problem and solution space
+  - Class Diagrams, Sequence Diagrams etc.
+- ___Process View:___
+  - Encompasses the dynamic aspects or runtime behaviour of the system
+  - Threads and processes that form the systems
+  - Addresses, performance, concurrency etc.
+- ___Implementation View:___
+  - Addresses the realization of the system
+  - UML diagrams
+- ___Deployment View:___
+  - Focuses of system engineering issues
+
+## Architectural Styles
+- It is way of organization of the components in an architecture, characterized by the features that make it notable
+- Toolbox having tools of architecture
+- Addresses the structure and behaviour of the system and is a way of organizing modules
+- ___Vocabulary:___ A set of design elements
+- ___Design Rules:___ A set of constraints
+- ___Semantic Interpretation:___ Well-defined meaning of the connected design elements
+- ___Analysis:___ Analysis that can be performed on systems built in that style
+
+### Main Program with Subroutine
+- ___Generic:___ Traditional Langauge-Influence Style
+- ___Problem:___
+  - System can be described as a hierarchy of functions
+  - Natural outcome of the functional decomposition of the system
+  - Top level module acts as a main program and invokes the other modules in the right order
+  - Single thread of control
+- ___Context:___
+  - Language with nested procedures
+- ___Solution:___
+  - _System Model:_
+    - Procedures and modules are defined in a hierarchy
+    - Higher level modules call lower level modules
+    - Hierarchy may be strict or weak
+  - _Components:_
+    - Procedures which can are residing in the main program
+    - Have their own local and global data
+  - _Connectors:_
+    - Procedure call and shared access to global data
+  - _Control Structure:_
+    - Single centralized thread of control
+    - Main program pulls all the strings
+
+## Architectural Pattern
+- Is a proven potential solution of structuring and functioning to a recurring architectural problem
+- Typically discovered
+- Is a named collection of architectural decisions that
+  - Has resulted in successful solution in a given development context
+  - Constrain architectural design decisions that are specific to a particular system in that context
+  - Brings out beneficial qualities in each resulting system
+  - Good starting point solution to the problem
+  - Could be looked at from the perspective of number of layers between the user and data
+
+### Tiered Architecture
+- Number of layers betwwen user and the data
+
+#### Monolithic
+- Also called as single tier architecture
+- Consists of a single application layer that supports the user interface, business rules and all the manipulations in one structure
+
+#### Two Tiered Architecture
+- Business rules and user interface remain at the client side
+- Data retrieval and manipulation is done by another application, present in a separate system
+
+### Model View Controller
+- ___Model:___
+  - It is the central component and consists of application data, business rules, logic and functions
+  - Abstraction layer for features
+- ___View:___
+  - View is the graphics design and layout
+  - Gets information from the model as prompted by controller
+- ___Controller:___
+  - Accepts input and converts it into commands for the model or view
+- MVC will be useful when User Interface changes more frequently than the Business Logic
+- If an application needs to display the same data in different ways
+- Designing visally appealing UI requires different skill set when compared to what is needed for developing complex business logic
+- UI code tends to be more device dependent than the business logic
+- Keeping these two independent, it will ensure migration and minimizes the risk of introducing errors into the business logic
+
+## Design
+### Design Principle
+- Further decomposition of the components being developed if necessary
+- Description of the behaviour of components identified as part of Architectural Design
+- Description of how the interfaces will actually be realized using the appropriate algorithms and data structures
+- Description on how the system will facilitate interaction with user via the User Interface
+- Use of appropriate structural and behavioral design patterns
+- Consideration of maintainance and reuse as couple of goals of the project
+
+### Techniques that enable Design
+- ___Abstraction:___ Focus on essential properties
+- ___Modularity:___ Degree or extent to which the larger module can be decomposed
+- ___Cohesion:___ Extent to which components are dependent on each other. Strong cohesion good
+- ___Coupling:___ Extent to which how strongly the modules are connected to other modules. Low coupling is good
+- ___Types of Coupling:___
+  - Content
+  - Common
+  - External
+  - Control
+  - Stamp
+  - Data
+- ___Types of Cohesion:___
+  - Adhoc
+  - Logical
+  - Temporal
+  - Sequential
+  - Procedural
+  - Functional
+- ___Information Hiding:___
+  - Design involves a series of decisions and for each such decision, we need to consider who needs to know what
+  - This is done through:
+    - ___Encapsulation:___
+      - Hides data and allows access to data only through specific functions
+    - ___Separation:___
+      - Information hiding strategy which involves defining a component by specifyin public interface
+      - Separating the details of how the component is actually realized
+- ___Limiting Complexity:___
+  - Refers to the amount of effort required for building the solution
+  - Can be intra-modular or inter-modular
+  - Higher value => Higher Complexity => Higher Effort required => Worse design
+- ___Hierarchical Structure:___
+  - Views the whole structure as a hierarchy
+
+### Key Issues
+- Concurrency
+- Event Handling
+- Distribution of components
+- Non-functional requirements
+- Error, Excpetion Handling, Fault Tolerance
+- Interaction and Presentation
+- Data Persistence
+
+## Design Methods
+- Detailed design methods support us in decomposing the components representing the system requirement into components/subcomponents
+
+### Data Flow Diagram
+- It is a two step process
+  - ___Structured Analysis:___ Resulting in logical design, drawn as a set of data flow diagrams
+  - ___Structured Design:___ Transforming the logical design into a program structure drawn as a set of structure charts
+
+#### Components in DFD
+- ___External Entity:___ Source and Destination of a transaction. Depicted as __squares__
+- ___Process:___ Transforms the data. Depicted as __circles__
+- ___Data Stores:___ Lie between processes and are places where data structures reside. Depicted as __two parallel lines__
+- ___Data Flows:___ Paths where data structures travel between processes and entities and data stores. Depicted as __arrows__
+
+#### Minispecs
+- Once the DFDs become sufficiently straight forwards, and cannot be broken down further, these are processes are described as "minispecs"
+
+#### Data Dictionary Entries
+- Contents of the DFDs after are at a logical decomposed state are recorded in a data dictionary
+- Precise description of the structure of the data
+
+#### Transform-Centred Desgin
+- Trace the input through the data flow diagram until it can no longer be considered as an input
+
+### Design Pattern
+- Provides solution to a recurring problem
+- Provides abstraction above the level of a single component
+- Means of documentation both descriptive and prescriptive
+
+|Pattern|What it does|
+|:--:|:--:|
+|Structural Decomposition Pattern|Breaks down large system into subsystems and complex components|
+|Organization of work pattern|Defines how components work together|
+|Access Control Pattern|Describes how access to services and components is controlled|
+|Management Pattern|Defines how to handle homogeneous collections in their entirety|
+|Communcation Pattern|Defines how to organize communication among components|
+
+#### Singleton Pattern
+- Ensures that only one instance of a class is created
+- Provides a global point of access to the object
+- Useful when only one object is needed to coordinate actions
+- Involves only one class which is responisble to instantiate itself
+
+#### Anti Pattern
+- Describe situations that should be avoided
+- In Agile Approach, refactoring is applied whenever an anti pattern has been introduced
+
+## Structured and Object Oriented
+- Just read the slides
+- I can't be bothered with this table
+
+## Service Oriented Architecture
+- Architectural style that supports a way to make software components reusable via service interfaces
+- Each service in an SOA embodies the code and data integration required to execute a complete, discrete business function
+- Services are exposed using standard network protocols like HTTP or JSON/HTTP
+- Design methodology basesd on structured collection, called services
+- SOA originates from concept of breaking down a large problem into a series of smaller, individual problems
+
+### Benefits of SOA
+- Greater business agility
+- Faster time to marker
+- Ability to leverage legacy functions in new markets
+- Service Reusability
+- Improved collab between business and IT
+
+### Service
+- Service is a logical representation of a repeatable business activity that has a specified outcome
+- Implemented as discrete pieces of software or components written in any langage capable of performing a task
+- Implemented as callable entities
+- Could also be application functionality with wrappers, which can communicate through messages
+
+#### Characteristics of Services
+- Adhere to service contract
+- Loosely cooupled
+- Stateless
+- Autonomous
+- Abstraction
+- Reusable
+- Open standards
+- Facilitate interoparability
+- Can be discovered
+- Can be composed to form larger services
+
+### SOA Roles
+- ___Service Provider:___ Creates web services and provides them to a service registry
+- ___Service Registry/Broker:___ Responisble for providing information about the service to a requester
+- ___Service Requester:___ Finds a service in a service broker then will connect with the service provider to receive the service
+
+### Architecture
+- Typical architecture with two layers of services, communicating through service bus, with an orchestration layer
+- There is a service bus through with the communication takes place
+
+
+
 
 
 
