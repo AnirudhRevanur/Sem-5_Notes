@@ -242,8 +242,8 @@
   - Decomposition based on _Generality_
   - Decomposition based on _Volatility_
   - Configuration
-- Keeping internals of a module together: ___Coupling___
-- Different Modules working together: ___Cohesion___
+- Keeping internals of a module together: ___Cohesion___
+- Different Modules working together: ___Coupling___
 - Look for __Low Coupling__ and __High Cohesion__
 - Other ways of Decomposition:
   - Divide and Conquer
